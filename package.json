@@ -1,0 +1,22 @@
+{
+  "name": "chamadossme",
+  "version": "1.0.0",
+  "description": "Sistema de chamados interno para o setor de T.I",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon ./server.js"
+  },
+  "author": "Yuri Rocha",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.1",
+    "cors": "^2.8.5",
+    "express": "^4.17.2",
+    "express-jwt": "^6.1.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongodb": "^4.3.1",
+    "mongoose": "^6.1.8",
+    "rootpath": "^0.1.2"
+  }
+}
