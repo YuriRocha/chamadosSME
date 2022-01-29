@@ -14,9 +14,13 @@ module.exports = {
 }
 
 // FUNÇÕES DO CALL service
-async function addNewCall(body, params){
-  const call = new Call(body);
 
+async function addNewCall(body, params){
+  console.log("Body Parameter: ", body);
+  const call = new Call(body);
+  call.requester = params.id;
+  call.status = true;
+  console.log("Call Object: ", call);
   //save call
   await call.save();
 }

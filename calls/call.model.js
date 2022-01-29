@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 const call_schema = new Schema({
   requester: {type: String, required: true},
+  departament: {type: String, required: true},
   category: {type: String, required: true},
   status: {type: Boolean, required: true},
   message: {type: String, required: true},

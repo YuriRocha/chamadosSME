@@ -3,14 +3,14 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const db = require('_helpers/db');
 const User = db.User;
-//const request = require('request');
-//const endpoint = require('endpoint');
+const Call = db.Call;
 
 module.exports = {
   register,
   login,
   profile,
-  teste
+  teste,
+  getById
 }
 
 // FUNÇÕES DO USER SERVICE
@@ -51,4 +51,8 @@ async function profile({id}){
 
 async function teste(body){
   return body;
+}
+
+async function getById(id){
+    return await User.findById(id).select('-hash');
 }
