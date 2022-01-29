@@ -7,7 +7,6 @@ module.exports = jwt;
 
 function jwt() {
     const secret = config.secret;
-    console.log(secret);
     return expressJwt({ secret, isRevoked, algorithms: ['HS256'] }).unless({
         path: [
             // public routes that don't require authentication

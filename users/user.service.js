@@ -16,12 +16,12 @@ module.exports = {
 // FUNÇÕES DO USER SERVICE
 async function register(body){
         // validate
-        if(await User.findOne({name: body.name})){
+        if(await User.findOne({username: body.username})){
             throw 'Já existe um usuário com esse nome no sistema';
         }
 
         const user = new User(body);
-        user.role = 'admin'
+        user.role = 'user'; // Lembrar de configurar isso futuramente
 
         // hash password
         if(body.password){

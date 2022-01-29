@@ -7,7 +7,7 @@ router.post('/register', register);
 router.post('/login', login);
 router.get('/:id', profile);
 router.post('/teste', teste);
-console.log("controller");
+
 module.exports = router;
 
 // FUNÇÕES DO CONTROLLER
