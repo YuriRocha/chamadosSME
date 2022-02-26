@@ -7,7 +7,7 @@ router.post('/:id/calls/new', addNewCall);
 router.get('/:id/list', listAllCalls);
 router.get('/:id/listopen', listOpenCalls);
 router.get('/:id/listclosed', listClosedCalls);
-//router.put('/:id/role/call/:idcall/edit', editCall);
+router.put('/:id/call/:idcall/edit', editCall);
 //router.delete('/:id/role/calls/:idcall', removeCall);
 
 module.exports = router;
@@ -35,5 +35,11 @@ function listOpenCalls(req, res, next){
 function listClosedCalls(req, res, next){
   callService.listClosedCalls(req.params)
   .then(calls => res.json(calls))
+  .catch(err => next(err));
+}
+
+function editCall(req, res, next){
+  callService.editCall(req.params, req.body)
+  .then(message => res.json(message))
   .catch(err => next(err));
 }

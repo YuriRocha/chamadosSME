@@ -9,8 +9,8 @@ module.exports = {
   addNewCall,
   listAllCalls,
   listOpenCalls,
-  listClosedCalls
-  //editCalls,
+  listClosedCalls,
+  editCall
   //removeCall
 }
 
@@ -51,4 +51,28 @@ async function listClosedCalls(params){
 
   // pesquisar no banco de dados e retornar todas as calls com status == true
   return Call.find({status: 'closed'});
+}
+
+async function editCall(params, body){
+  // checar se é admin
+  const user = await User.findById(params.id).select('-hash');
+  if(user.role !== 'admin'){
+    return {message: "Você não tem autorização para fechar esse chamado."};
+  }
+  // fazer update no status
+  if(body.status == ""){
+    return {message: "Por favor preencha o status do chamado."};
+  }
+
+  if(body.status != ""){
+    await Call.findOneAndUpdate(
+        { "_id" : params.idcall},
+        { "$set": { "status": body.status }},
+        function(err, info) {
+            if(err){console.log(err);}
+            //console.log(info);
+    }).clone();
+  }
+
+  return {message: "O chamado foi atualizado com sucesso!"};
 }
