@@ -7,9 +7,9 @@ const User = db.User;
 
 module.exports = {
   addNewCall,
-  listAllCalls
-  ///listOpenCalls,
-  //listClosedCalls,
+  listAllCalls,
+  listOpenCalls,
+  listClosedCalls
   //editCalls,
   //removeCall
 }
@@ -28,7 +28,27 @@ async function addNewCall(body, params){
 async function listAllCalls(params){
   const user = await User.findById(params.id).select('-hash');
   if(user.role !== 'admin'){
-    return {message: "Você não tem autorização para listar os chamados!"};
+    return {message: "Você não tem autorização para listar os chamados! Apenas os administradores do sistemas possuem essa permissão."};
   }
   return Call.find();
+}
+
+async function listOpenCalls(params){
+  const user = await User.findById(params.id).select('-hash');
+  if(user.role !== 'admin'){
+    return {message: "Você não tem autorização para listar os chamados abertos! Apenas os administradores do sistemas possuem essa permissão."};
+  }
+
+  // pesquisar no banco de dados e retornar todas as calls com status == true
+  return Call.find({status: 'open'});
+}
+
+async function listClosedCalls(params){
+  const user = await User.findById(params.id).select('-hash');
+  if(user.role !== 'admin'){
+    return {message: "Você não tem autorização para listar os chamados abertos! Apenas os administradores do sistemas possuem essa permissão."};
+  }
+
+  // pesquisar no banco de dados e retornar todas as calls com status == true
+  return Call.find({status: 'closed'});
 }
