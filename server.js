@@ -27,10 +27,18 @@ app.use(jwt());
 const url = config.url;
 const dbName = 'chamados-sme';
 
+app.set('view engine', 'ejs');
+app.set('views', './views');
+
+app.get('/', (req, res) => {
+    res.render('home');
+});
+
 app.use('/app', require('./users/user.controller.js'));
 app.use('/app', require('./calls/call.controller.js'));
 
 app.use(errorHandler);
+
 
 const port = process.env.NODE_ENV === 'production' ? (process.env.PORT || 80) : 4000;
 const server = app.listen(port, function () {
