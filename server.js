@@ -27,16 +27,9 @@ app.use(jwt());
 const url = config.url;
 const dbName = 'chamados-sme';
 
-app.set('view engine', 'ejs');
-app.set('views', './views');
-
-app.get('/', (req, res) => {
-    res.render('home');
-});
-
 app.use('/app', require('./users/user.controller.js'));
 app.use('/app', require('./calls/call.controller.js'));
-
+//app.use(express.static("public"));
 app.use(errorHandler);
 
 
