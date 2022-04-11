@@ -11,7 +11,8 @@ module.exports = {
   listOpenCalls,
   listClosedCalls,
   editCall,
-  removeCall
+  removeCall,
+  getCall
 }
 
 // FUNÇÕES DO CALL service
@@ -80,4 +81,9 @@ async function editCall(params, body){
 async function removeCall(body){
   await Call.deleteOne({ _id: body.idcall });
   return {message: "O chamado foi deletado com sucesso!"};
+}
+
+async function getCall(params){
+  const call = await Call.findById(params.idcall);
+  return call;
 }
