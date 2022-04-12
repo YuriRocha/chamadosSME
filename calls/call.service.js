@@ -68,7 +68,7 @@ async function editCall(params, body){
   if(body.status != ""){
     await Call.findOneAndUpdate(
         { "_id" : params.idcall},
-        { "$set": { "status": body.status }},
+        { "$set": { "status": body.status, "departament": body.departament, "category": body.category, "message": body.message, "call_date": body.call_date }},
         function(err, info) {
             if(err){console.log(err);}
             //console.log(info);
